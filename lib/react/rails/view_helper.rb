@@ -4,7 +4,7 @@ module React
       # Render a UJS-type HTML tag annotated with data attributes, which
       # are used by react_ujs to actually instantiate the React component
       # on the client.
-      def react_component(name, props = {}, options = {}, &block)
+      def ks_react_component(name, props = {}, options = {}, &block)
         options = {:tag => options} if options.is_a?(Symbol)
 
         prerender_options = options[:prerender]

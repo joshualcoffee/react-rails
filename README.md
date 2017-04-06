@@ -116,14 +116,14 @@ config.react.jsx_transform_options = {
 
 ### Rendering & mounting
 
-`react-rails` includes a view helper (`react_component`) and an unobtrusive JavaScript driver (`react_ujs`) 
+`react-rails` includes a view helper (`ks_react_component`) and an unobtrusive JavaScript driver (`react_ujs`) 
 which work together to put React components on the page. You should require the UJS driver
  in your manifest after `react` (and after `turbolinks` if you use [Turbolinks](https://github.com/rails/turbolinks)).
 
 The __view helper__ puts a `div` on the page with the requested component class & props. For example:
 
 ```erb
-<%= react_component('HelloMessage', name: 'John') %>
+<%= ks_react_component('HelloMessage', name: 'John') %>
 <!-- becomes: -->
 <div data-react-class="HelloMessage" data-react-props="{&quot;name&quot;:&quot;John&quot;}"></div>
 ```
@@ -137,7 +137,7 @@ If Turbolinks is present components are mounted on the `page:change` event, and 
 The view helper's signature is:
 
 ```ruby
-react_component(component_class_name, props={}, html_options={})
+ks_react_component(component_class_name, props={}, html_options={})
 ```
 
 - `component_class_name` is a string which names a globally-accessible component class. It may have dots (eg, `"MyApp.Header.MenuItem"`).
@@ -150,10 +150,10 @@ react_component(component_class_name, props={}, html_options={})
 
 ### Server rendering
 
-To render components on the server, pass `prerender: true` to `react_component`:
+To render components on the server, pass `prerender: true` to `ks_react_component`:
 
 ```erb
-<%= react_component('HelloMessage', {name: 'John'}, {prerender: true}) %>
+<%= ks_react_component('HelloMessage', {name: 'John'}, {prerender: true}) %>
 <!-- becomes: -->
 <div data-react-class="HelloMessage" data-react-props="{&quot;name&quot;:&quot;John&quot;}">
   <h1>Hello, John!</h1>
@@ -273,7 +273,7 @@ Note that the arguments for `oneOf` and `oneOfType` must be enclosed in single q
 
 ### Jbuilder & react-rails
 
-If you use Jbuilder to pass a JSON string to `react_component`, make sure your JSON is a stringified hash, 
+If you use Jbuilder to pass a JSON string to `ks_react_component`, make sure your JSON is a stringified hash, 
 not an array. This is not the Rails default -- you should add the root node yourself. For example:
 
 ```ruby
